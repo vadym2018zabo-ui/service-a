@@ -18,4 +18,3 @@
 - **Репозиторій:** https://github.com/<owner>/<repo>
 - **CI/CD виконання:** https://github.com/<owner>/<repo>/actions
 - **GHCR пакет:** https://github.com/<owner>?tab=packages
-- **Артефакт:** див. останній успішний ран у Actions → Artifacts
