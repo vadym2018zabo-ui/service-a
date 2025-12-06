@@ -1,0 +1,25 @@
+name: Build and Run Docker Service
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:  # дозволяє запуск вручну з вкладки Actions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Build Docker image
+      run: docker build -t service-a .
+
+    - name: Run container
+      run: docker run -d -p 3000:3000 service-a
