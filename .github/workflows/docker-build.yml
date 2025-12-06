@@ -22,4 +22,10 @@ jobs:
       run: docker build -t service-a .
 
     - name: Run container
-      run: docker run -d -p 3000:3000 service-a
+      run: docker run -p 3000:3000 service-a
+
+    - name: Test API
+      run: |
+       sleep 5
+       curl http://localhost:3000/health
+
