@@ -19,7 +19,7 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Build Docker image
-      run: docker build -t service-a .
+      run: docker build -f src/Dockerfile -t service-a .
 
     - name: Run container in foreground
       run: |
