@@ -1,4 +1,4 @@
-name: Build and Run Docker Service
+name: Build and Test Docker Service
 
 on:
   push:
@@ -21,11 +21,15 @@ jobs:
     - name: Build Docker image
       run: docker build -t service-a .
 
-    - name: Run container
-      run: docker run -p 3000:3000 service-a
-
-    - name: Test API
+    - name: Run container in foreground
       run: |
-       sleep 5
-       curl http://localhost:3000/health
+        docker run -p 3000:3000 --name service-a-container service-a &
+        sleep 5
+
+    - name: Test API endpoint
+      run: |
+        curl --fail http://localhost:3000/health || exit 1
+
+    - name: Stop container
+      run: docker stop service-a-container || true
 
